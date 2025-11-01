@@ -1,53 +1,91 @@
 {
   "experiences": [
     {
-      "slug": "lapland-northern-lights",
-      "title": "Northern Lights in Lapland",
-      "location": "Swedish Lapland",
-      "image": "https://picsum.photos/seed/travel/960/540",
-      "tags": ["northern lights", "winter", "lapland"],
-      "teaser": "Experience the magical aurora borealis in Sweden's wilderness with dog sledding and ice hotels."
+      "slug": "rila-monastery-hike",
+      "title": "Rila Monastery & Mountain Hike",
+      "location": "Rila Mountains, Bulgaria",
+      "image": "https://picsum.photos/seed/rila/960/540",
+      "tags": ["mountains", "hiking", "monastery"],
+      "teaser": "Discover Bulgaria's most iconic monastery nestled in the Rila Mountains, combined with scenic hiking trails and mountain cuisine."
     },
     {
-      "slug": "stockholm-archipelago",
-      "title": "Stockholm Archipelago Tour",
-      "location": "Stockholm, Sweden",
-      "image": "https://picsum.photos/seed/archipelago/960/540",
-      "tags": ["archipelago", "islands", "boat tour"],
-      "teaser": "Explore Sweden's stunning archipelago with 30,000 islands, skerries, and traditional summer houses."
+      "slug": "plovdiv-old-town",
+      "title": "Historic Plovdiv & Wine Experience",
+      "location": "Plovdiv, Bulgaria",
+      "image": "https://picsum.photos/seed/plovdiv/960/540",
+      "tags": ["culture", "history", "wine"],
+      "teaser": "Explore Plovdiv’s cobblestone old town, Roman amphitheater, and nearby vineyards producing Bulgaria’s finest wines."
     },
     {
-      "slug": "gothenburg-west-coast",
-      "title": "West Coast Seafood Adventure",
-      "location": "Gothenburg, Sweden",
-      "image": "https://picsum.photos/seed/seafood/960/540",
-      "tags": ["seafood", "coast", "fishing"],
-      "teaser": "Discover Sweden's west coast with fresh seafood, fishing villages, and beautiful coastal landscapes."
-    },
-    {
-      "slug": "midnight-sun-kiruna",
-      "title": "Midnight Sun Experience",
-      "location": "Kiruna, Sweden",
-      "image": "https://picsum.photos/seed/midnight/960/540",
-      "tags": ["midnight sun", "summer", "hiking"],
-      "teaser": "Experience 24-hour daylight in Sweden's northernmost city with hiking and Sami culture."
+      "slug": "black-sea-coast",
+      "title": "Black Sea Coast Getaway",
+      "location": "Sozopol & Nessebar, Bulgaria",
+      "image": "https://picsum.photos/seed/sea/960/540",
+      "tags": ["beach", "summer", "seafood"],
+      "teaser": "Relax on Bulgaria’s Black Sea coast with ancient seaside towns, golden beaches, and fresh local seafood."
     }
   ],
   "articles": [
     {
       "id": 1,
-      "title": "Best Time to See Northern Lights",
-      "body": "The optimal period is September to March, with clear, dark skies away from city lights. Swedish Lapland offers some of the world's best viewing conditions."
+      "title": "Top Bulgarian Mountain Trails",
+      "body": "Bulgaria offers stunning hiking routes across Rila, Pirin, and the Rhodope Mountains. The Rila Seven Lakes trail and Musala Peak are among the most scenic."
     },
     {
       "id": 2,
-      "title": "Swedish Archipelago Guide",
-      "body": "Take ferry boats between islands, stay in traditional red cottages, and enjoy fresh seafood. Summer months offer the warmest weather and longest days."
+      "title": "Exploring Bulgaria’s Ancient Cities",
+      "body": "Plovdiv and Veliko Tarnovo preserve centuries of history with Roman ruins, fortress walls, and charming old towns filled with art and culture."
     },
     {
       "id": 3,
-      "title": "Planning Your Swedish Adventure",
-      "body": "Book accommodations early, especially for northern lights season. Consider the midnight sun period for unique hiking experiences in endless daylight."
+      "title": "Best Time to Visit Bulgaria",
+      "body": "May to September is ideal for the coast and outdoor adventures, while winter months offer excellent ski conditions in Bansko and Borovets."
+    }
+  ],
+  "packages": [
+    {
+      "id": 1,
+      "title": "Cultural Heritage Tour",
+      "description": "A journey through Bulgaria’s UNESCO sites, monasteries, and traditional villages",
+      "price": 12490,
+      "duration": "6 days",
+      "includes": [
+        "Hotel accommodation",
+        "Guided cultural tours",
+        "Museum entries",
+        "Local cuisine tastings"
+      ],
+      "type": "standalone",
+      "image": "https://picsum.photos/seed/church/940/530"
+    },
+    {
+      "id": 2,
+      "title": "Black Sea Relaxation Package",
+      "description": "Enjoy Bulgaria’s beautiful beaches with wellness spa, seafood dinners, and coastal tours",
+      "price": 9990,
+      "duration": "4 days",
+      "includes": [
+        "Seaside hotel stay",
+        "Breakfast & dinner",
+        "Guided Nessebar tour",
+        "Spa & wellness treatments"
+      ],
+      "type": "standalone",
+      "image": "https://picsum.photos/seed/beach/940/530"
+    },
+    {
+      "id": 3,
+      "title": "Traditional Photography Add-on",
+      "description": "Add a Bulgarian cultural photography session to any experience",
+      "price": 2490,
+      "duration": "add-on",
+      "includes": [
+        "Professional photographer",
+        "Edited portrait & landscape photos",
+        "Digital gallery"
+      ],
+      "type": "addon",
+      "image": "https://picsum.photos/seed/camera/940/530"
     }
   ]
 }

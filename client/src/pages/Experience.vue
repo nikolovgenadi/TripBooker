@@ -3,17 +3,29 @@ import { onMounted, ref, computed } from 'vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
-// new data arrays
+// data arrays
 const data = ref({ experiences: [], articles: [] });
 
-// gets slug from the URL params "as string" (defined in router/index.ts)
+// gets slug from the URL params
 const slug = computed(() => route.params.slug as string);
 
-// find the specific experience with slug (defined in data.json, router/index.ts)
+// find the specific experience with slug
 const experience = computed(() => {
   return data.value.experiences.find((exp) => exp.slug === slug.value);
 });
 
+// get query params for summary (resedatum, personer etc from homepage)
+const searchCriteria = computed(() => {
+  return {
+    search: route.query.search,
+    startDate: route.query.startDate,
+    adults: route.query.adults,
+    children: route.query.children,
+    days: route.query.days,
+  };
+});
+
+// load experience data when component is mounted (added to the DOM)
 onMounted(async () => {
   const response = await fetch('/data.json');
   data.value = await response.json();
@@ -60,6 +72,36 @@ onMounted(async () => {
         <div class="md:col-span-2">
           <h1 class="text-4xl font-bold mb-4">{{ experience.title }}</h1>
           <p class="text-xl text-gray-600 mb-6">{{ experience.location }}</p>
+
+          <!-- summary of previous selections (query params) -->
+          <div
+            v-if="
+              searchCriteria.search ||
+              searchCriteria.startDate ||
+              searchCriteria.adults
+            "
+            class="bg-gray-50 p-4 rounded-lg mb-6"
+          >
+            <h3 class="font-semibold mb-2">your search criteria:</h3>
+            <div class="text-sm text-gray-700">
+              <p v-if="searchCriteria.search">
+                Searched for: "{{ searchCriteria.search }}"
+              </p>
+              <p v-if="searchCriteria.startDate">
+                Travel date: {{ searchCriteria.startDate }}
+              </p>
+              <p v-if="searchCriteria.adults">
+                Adults: {{ searchCriteria.adults }}
+              </p>
+              <p v-if="searchCriteria.children">
+                Children: {{ searchCriteria.children }}
+              </p>
+              <p v-if="searchCriteria.days">
+                Duration: {{ searchCriteria.days }} days
+              </p>
+            </div>
+          </div>
+
           <p class="text-lg text-gray-700 leading-relaxed mb-6">
             {{ experience.teaser }}
           </p>
@@ -82,10 +124,12 @@ onMounted(async () => {
         <!-- booking sidebar -->
         <div class="bg-gray-50 p-6 rounded-lg h-fit">
           <h3 class="text-xl font-semibold mb-4">Book This Experience</h3>
-          <p class="text-gray-600 mb-6">Ready for adventure?</p>
 
           <router-link
-            :to="`/book/${experience.slug}`"
+            :to="{
+              path: `/book/${experience.slug}`,
+              query: searchCriteria,
+            }"
             class="w-full bg-blue-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-600 transition-colors text-center block"
           >
             Book Now

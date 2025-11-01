@@ -11,43 +11,75 @@ export interface CartItem {
   pricePerPerson: number;
 }
 
+export interface PackageItem {
+  packageId: number;
+  packageTitle: string;
+  price: number;
+  duration: string;
+  type: 'standalone' | 'addon';
+  includes: string[];
+}
+
 export const useCartStore = defineStore('cart', () => {
-  // array that holds all the booked experiences
-  const items = ref<CartItem[]>([]);
+  // separate arrays for different item types
+  const experienceItems = ref<CartItem[]>([]);
+  const packageItems = ref<PackageItem[]>([]);
 
   // computed values (auto-calculated when items change)
-  const totalItems = computed(() => items.value.length); // how many bookings in cart
+  const totalItems = computed(
+    () => experienceItems.value.length + packageItems.value.length
+  );
 
   const totalPrice = computed(() => {
-    // loop through all items and calculate total cost
-    return items.value.reduce((total, item) => {
+    // calculate experience costs
+    const experienceCost = experienceItems.value.reduce((total, item) => {
       const peopleCount = item.adults + item.children;
       return total + item.pricePerPerson * peopleCount * item.days;
     }, 0);
+
+    // calculate package costs
+    const packageCost = packageItems.value.reduce((total, pkg) => {
+      return total + pkg.price;
+    }, 0);
+
+    return experienceCost + packageCost;
   });
 
-  // actions (functions that modify the cart)
-  function addItem(item: CartItem) {
-    items.value.push(item); // add new booking to cart
+  // actions for experiences
+  function addExperience(item: CartItem) {
+    experienceItems.value.push(item);
   }
 
-  function removeItem(index: number) {
-    items.value.splice(index, 1); // remove booking by position
+  function removeExperience(index: number) {
+    experienceItems.value.splice(index, 1);
+  }
+
+  // actions for packages
+  function addPackage(item: PackageItem) {
+    packageItems.value.push(item);
+  }
+
+  function removePackage(index: number) {
+    packageItems.value.splice(index, 1);
   }
 
   function clearCart() {
-    items.value = []; // empty the entire cart
+    experienceItems.value = [];
+    packageItems.value = [];
   }
 
   return {
     // state (the data)
-    items,
-    // computed (auto-calculated values)
+    experienceItems,
+    packageItems,
+    // computed (auto calculated values)
     totalItems,
     totalPrice,
-    // actions (functions to change cart)
-    addItem,
-    removeItem,
+    // actions (functions that change cart)
+    addExperience,
+    removeExperience,
+    addPackage,
+    removePackage,
     clearCart,
   };
 });
